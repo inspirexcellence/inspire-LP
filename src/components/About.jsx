@@ -39,9 +39,9 @@ export default function About() {
             <div className="relative mb-8">
               <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#B8860B]/20 to-[#F5EDD8] -z-10" />
               <img
-                src="/prerona-roy.png"
+                src="/host.png"
                 alt="Prerona Roy — Executive Consultant and Behaviour Transformation Expert"
-                className="w-full max-w-sm mx-auto rounded-2xl object-cover aspect-[4/5] shadow-xl"
+                className="w-full h-auto rounded-3xl object-cover shadow-xl"
               />
               {/* Floating badge */}
               <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white border border-[#E8DDD0] rounded-2xl px-5 py-3 shadow-lg text-center whitespace-nowrap">
@@ -96,12 +96,23 @@ export default function About() {
                 and others.
               </p>
 
-              <p className="text-[#6B6B6B] leading-relaxed text-sm sm:text-base">
-                Her work has extended across renowned organisations such as TCS, L&T, Ministry of
-                Defence, and SBI Institute of Leadership. She has also been featured and recognised
-                by various national-level media platforms for both her professional impact and her
-                personal transformation journey.
-              </p>
+              <div>
+                <p className="text-[#6B6B6B] leading-relaxed text-sm sm:text-base mb-4">
+                  Her work has extended across renowned organisations such as:
+                </p>
+                <div className="flex flex-wrap items-center gap-8 md:gap-12 lg:gap-16 mb-5 bg-[#FDFAF5] p-5 rounded-2xl border border-[#E8DDD0]">
+                  <img src="https://i.logos-download.com/113971/29583-9fde4947792aa7b5b379c0b1aee0ead2.png/Tata_Consultancy_Services_Logo_2020.png?dl" alt="TCS" className="h-6 sm:h-8 object-contain transition-all duration-300 opacity-60 hover:opacity-100 mix-blend-multiply" />
+                  <img src="/brands/L&T.png" alt="L&T" className="h-6 sm:h-8 object-contain transition-all duration-300 opacity-60 hover:opacity-100 mix-blend-multiply" />
+                  <img src="/brands/sbi.png" alt="SBI" className="h-6 sm:h-8 object-contain transition-all duration-300 opacity-60 hover:opacity-100 mix-blend-multiply" />
+                  <div className="flex items-center gap-2 transition-all duration-300 opacity-60 hover:opacity-100">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ministry of Defence" className="h-8 sm:h-10 object-contain mix-blend-multiply" />
+                    <span className="text-[10px] font-bold text-[#1A1F36] leading-tight uppercase tracking-wider">Ministry of<br/>Defence</span>
+                  </div>
+                </div>
+                <p className="text-[#6B6B6B] leading-relaxed text-sm sm:text-base">
+                  She has also been featured and recognised by various national-level media platforms for both her professional impact and her personal transformation journey.
+                </p>
+              </div>
 
               {/* Mentor row */}
               <div className="pt-4 border-t border-[#E8DDD0]">
