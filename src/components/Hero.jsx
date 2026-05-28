@@ -99,7 +99,7 @@ export default function Hero() {
               {[
                 { value: '500+', label: 'Leaders Transformed' },
                 { value: '2X', label: 'Avg. Business Growth' },
-                { value: '10+', label: 'Years Experience' },
+                { value: '20+', label: 'Years Experience' },
               ].map((s, i) => (
                 <div key={s.label} className={`flex flex-col ${i > 0 ? 'pl-8 border-l border-[#E8DDD0]' : ''}`}>
                   <span className="font-serif text-2xl font-bold text-[#B8860B]">{s.value}</span>
