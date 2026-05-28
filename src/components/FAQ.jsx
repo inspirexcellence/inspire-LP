@@ -20,19 +20,19 @@ const faqs = [
     questions: [
       {
         q: 'What exactly is the Founder Clarity Intensive?',
-        a: 'The Founder Clarity Intensive is a private 1:1 engagement with Prerona Roy built specifically for founders, business leaders, and entrepreneurs who have already achieved a level of success but are being held back by patterns, beliefs, or strategies they can\'t see clearly from the inside. It combines neuroscience, behavioural science, and strategic collaboration to create real internal shifts — not temporary motivation.',
+        a: 'The Founder Clarity Intensive is a private 1:1 engagement with Prerona Roy built specifically for founders, business leaders, and entrepreneurs who have already achieved a level of success but are being held back by patterns, beliefs, or strategies they can\'t see clearly from the inside. It combines neuroscience, behavioural science, and strategic collaboration to create real internal shifts not temporary motivation.',
       },
       {
         q: 'How is this different from regular coaching or consulting?',
-        a: 'Most coaching addresses surface-level strategies. This programme goes beneath the surface to the exact decision patterns, subconscious blocks, and internal wiring that are recreating the same ceiling — no matter what external changes you make. It is a deep internal identity restructuring combined with strategic action, designed to produce compressed-timeline results that last.',
+        a: 'Unlike regular coaching or consulting that mainly focuses on external strategies, advice, or accountability, this intensive works on both the internal and external dimensions of growth. Internally, it helps founders identify the subconscious patterns, mindset limitations, emotional pressures, and decision-making behaviours that silently create recurring bottlenecks, stress, or stagnation. Externally, it helps translate those internal shifts into stronger leadership, clearer decisions, better strategic thinking, improved team dynamics, and more scalable business growth. This is not surface-level motivation or generic consulting. It is a deep identity and behavioural transformation process combined with practical business and leadership application designed to create meaningful, long-term results.',
       },
       {
         q: 'What results can I realistically expect?',
-        a: 'Participants typically walk away with clarity on the beliefs and patterns affecting their growth, stronger decision-making under pressure, reduced internal conflict, a clearer leadership identity, and a more scalable way of operating their business. The average business growth among Prerona\'s clients is 2X within a year — but results depend entirely on your commitment and depth of engagement.',
+        a: 'The results vary based on your current stage, openness to the process, and level of implementation. However, most founders experience greater clarity, stronger decision-making, reduced mental overload, improved emotional resilience, and a more scalable way of leading and operating their business. Many also notice shifts in leadership confidence, team dynamics, strategic thinking, business growth, and the ability to handle pressure and uncertainty more effectively. The goal is not temporary motivation, but sustainable internal and external transformation that supports long-term growth.',
       },
       {
         q: 'Is this programme only about mindset, or does it include business strategy?',
-        a: 'Both. This programme partners internal identity work with concrete strategic actions. You will leave with real behavioural shifts and actionable strategies — not just new ways of thinking, but new ways of operating your business.',
+        a: 'No, the programme is not only about mindset.\n\nWhile a significant part of the work focuses on internal patterns, leadership psychology, emotional resilience, and decision-making behaviour, the programme also includes strategic business thinking and practical leadership application.\n\nThe goal is to help founders create internal clarity and behavioural shifts that directly improve external business outcomes including leadership effectiveness, strategic decisions, scalability, communication, growth direction, and overall business performance.\n\nThis is where the programme differs from purely motivational or mindset-based coaching. The work is designed to bridge both:\n• Internal transformation\n• External business and leadership results',
       },
     ],
   },
@@ -41,7 +41,7 @@ const faqs = [
     questions: [
       {
         q: 'How long is the programme and how many sessions are there?',
-        a: 'The programme is typically completed over 3 to 6 months, with a total engagement of approximately 25–30 hours. All sessions are private 1:1 with Prerona Roy. The pace and scheduling are fully personalised based on your availability, convenience, and the depth of work required — there is no rigid template.',
+        a: 'The programme is typically completed over 3 to 6 months, with a total engagement of approximately 25–30 hours. All sessions are private 1:1 with Prerona Roy. The pace and scheduling are fully personalised based on your availability, convenience, and the depth of work required there is no rigid template.',
       },
       {
         q: 'How much time do I need to commit each week?',
@@ -58,7 +58,7 @@ const faqs = [
     questions: [
       {
         q: 'What is the pre-qualifying call and what should I expect?',
-        a: 'The pre-qualifying call is a brief conversation to understand your current business situation, leadership challenges, and the outcomes you are looking to achieve. It also helps Prerona evaluate whether this high-impact programme genuinely aligns with your goals and stage of growth. There is no pressure or sales pitch — it is simply a mutual assessment.',
+        a: 'The pre-qualifying call is a brief conversation to understand your current business situation, leadership challenges, and the outcomes you are looking to achieve. It also helps Prerona evaluate whether this high-impact programme genuinely aligns with your goals and stage of growth. There is no pressure or sales pitch, it is simply a mutual assessment.',
       },
       {
         q: 'What is the Founder Clarity Call and how does it differ from the pre-qualifying call?',
@@ -66,11 +66,11 @@ const faqs = [
       },
       {
         q: 'Am I guaranteed a spot after submitting my application?',
-        a: 'No. This is a highly selective, limited-capacity programme. Submitting an application begins the conversation, and both parties need to feel aligned after the clarity call before enrolment happens. This ensures that every person in the programme receives the full depth of attention and results they deserve.',
+        a: 'No. This is a highly selective, limited-capacity programme. Submitting an application begins the conversation, and both parties need to feel aligned after the clarity call before enrolment happens.\n\nTo maintain the depth and quality of the experience, we intentionally select only 5 founders each month. If you are not selected for the current intake, your application may be carried forward and reconsidered for the following month.',
       },
       {
         q: 'How do I know if I am the right fit?',
-        a: 'You are likely a strong fit if you are a founder, entrepreneur, CEO, or senior leader who has already achieved meaningful success but feels stuck at a ceiling you can\'t break through on your own. If you feel overloaded, need deeper clarity before scaling, are pivoting into a new role, or simply need a trusted sounding board — this programme is worth exploring.',
+        a: 'You are likely a strong fit if you are a founder, entrepreneur, CEO, or senior leader who has already achieved meaningful success but feels stuck at a ceiling you can\'t break through on your own. If you feel overloaded, need deeper clarity before scaling, are pivoting into a new role, or simply need a trusted sounding board, this programme is worth exploring.',
       },
     ],
   },
@@ -138,7 +138,7 @@ function AccordionItem({ question, answer, index, isOpen, onToggle, visible }) {
         }}
       >
         <div className="px-6 py-5 bg-white border-t border-[#E8DDD0]">
-          <p className="text-[#6B6B6B] text-sm sm:text-base leading-relaxed">{answer}</p>
+          <p className="text-[#6B6B6B] text-sm sm:text-base leading-relaxed whitespace-pre-wrap">{answer}</p>
         </div>
       </div>
     </div>

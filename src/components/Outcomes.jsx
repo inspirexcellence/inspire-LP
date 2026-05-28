@@ -36,7 +36,7 @@ export default function Outcomes() {
             What You Will Walk Away With
           </h2>
           <p className="text-[#6B6B6B] max-w-xl mx-auto leading-relaxed">
-            Real, lasting shifts — not surface-level motivation.
+            Real, lasting shifts not surface-level motivation.
           </p>
         </div>
 

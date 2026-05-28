@@ -7,7 +7,7 @@ import ProgrammeStructure from './components/ProgrammeStructure'
 import About from './components/About'
 import FAQ from './components/FAQ'
 import Apply from './components/Apply'
-import Footer from './components/Footer'
+import StickyCTA from './components/StickyCTA'
 
 export default function App() {
   return (
@@ -23,7 +23,7 @@ export default function App() {
         <FAQ />
         <Apply />
       </main>
-      <Footer />
+      <StickyCTA />
     </div>
   )
 }

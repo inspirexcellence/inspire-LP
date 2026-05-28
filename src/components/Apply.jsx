@@ -14,7 +14,7 @@ export default function Apply() {
   return (
     <section
       id="apply"
-      className="py-24 relative overflow-hidden"
+      className="py-24 relative overflow-hidden mb-14 md:mb-4 lg:mb-5"
       style={{ background: 'linear-gradient(160deg, #F8F3EA 0%, #FDFAF5 50%, #F2EBD8 100%)' }}
     >
       {/* Decorative circles */}
@@ -34,7 +34,7 @@ export default function Apply() {
           </h2>
           <p className="text-[#6B6B6B] max-w-2xl mx-auto leading-relaxed text-base sm:text-lg">
             Submit your application to explore the Founder Clarity Intensive. This is a limited
-            capacity, high-impact engagement — only for those who are ready.
+            capacity, high-impact engagement only for those who are ready.
           </p>
         </div>
 

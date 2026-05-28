@@ -129,3 +129,8 @@ section[id] {
 ::-webkit-scrollbar-thumb:hover {
   background: #D4A017;
 }
+
+@keyframes zpop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}

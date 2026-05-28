@@ -47,15 +47,15 @@ export default function WhoItsFor() {
           </p>
         </div>
 
-        <div ref={ref} className="grid lg:grid-cols-2 gap-10 items-start">
+        <div ref={ref} className="grid lg:grid-cols-2 gap-10">
           {/* Left: Primary roles */}
-          <div className={`transition-all duration-700 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            <div className="bg-white rounded-3xl border border-[#E8DDD0] p-8 shadow-sm">
+          <div className={`transition-all duration-700 h-full ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+            <div className="bg-white rounded-3xl border border-[#E8DDD0] p-8 shadow-sm h-full flex flex-col">
               <h3 className="font-serif text-xl font-bold text-[#1A1F36] mb-6 flex items-center gap-3">
                 <span className="w-8 h-8 rounded-full bg-[#F5EDD8] flex items-center justify-center text-sm">✦</span>
                 This Intensive Is Designed For
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {primaryAudience.map((item) => (
                   <div
                     key={item.label}
@@ -68,15 +68,22 @@ export default function WhoItsFor() {
                   </div>
                 ))}
               </div>
+              <div className="mt-8 flex-1 rounded-2xl overflow-hidden min-h-[200px] relative group">
+                <img 
+                  src="/clarity_growth_pattern.png" 
+                  alt="Clarity and Growth" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+              </div>
             </div>
           </div>
 
           {/* Right: Triggers */}
-          <div className={`transition-all duration-700 delay-200 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-            <div className="bg-white rounded-3xl border border-[#E8DDD0] p-8 shadow-sm h-full">
+          <div className={`transition-all duration-700 delay-200 h-full ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+            <div className="bg-white rounded-3xl border border-[#E8DDD0] p-8 shadow-sm h-full flex flex-col">
               <h3 className="font-serif text-xl font-bold text-[#1A1F36] mb-6 flex items-center gap-3">
                 <span className="w-8 h-8 rounded-full bg-[#F5EDD8] flex items-center justify-center text-sm">✦</span>
-                Especially If You…
+                Especially If   You…
               </h3>
               <div className="space-y-4">
                 {triggers.map((item, i) => (
@@ -90,11 +97,13 @@ export default function WhoItsFor() {
               </div>
 
               {/* Pull quote */}
-              <div className="mt-6 p-5 rounded-2xl border-l-4 border-[#B8860B] bg-[#F5EDD8]">
-                <p className="font-serif text-[#1A1F36] italic text-sm sm:text-base leading-relaxed">
-                  "The next level of your business requires a different version of you."
-                </p>
-                <p className="text-[#B8860B] text-xs font-semibold mt-2 uppercase tracking-widest">— Prerona Roy</p>
+              <div className="mt-auto pt-6">
+                <div className="p-5 rounded-2xl border-l-4 border-[#B8860B] bg-[#F5EDD8]">
+                  <p className="font-serif text-[#1A1F36] italic text-sm sm:text-base leading-relaxed">
+                    "The next level of your business requires a different version of you."
+                  </p>
+                  <p className="text-[#B8860B] text-xs font-semibold mt-2 uppercase tracking-widest">— Prerona Roy</p>
+                </div>
               </div>
             </div>
           </div>

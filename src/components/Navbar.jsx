@@ -11,17 +11,16 @@ export default function Navbar() {
   }, [])
 
   const links = [
-    { label: 'About', href: '#about' },
-    { label: 'Programme', href: '#programme' },
     { label: 'Who It\'s For', href: '#who' },
+    { label: 'Programme', href: '#programme' },
     { label: 'Process', href: '#process' },
+    { label: 'About', href: '#about' },
     { label: 'FAQ', href: '#faq' },
-    { label: 'Apply', href: '#apply' },
   ]
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ${
         scrolled
           ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-[#E8DDD0]'
           : 'bg-transparent'
@@ -29,23 +28,23 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="inline-block group">
+        <a href="#hero" className="inline-block group shrink-0">
           <img
-            src="https://inspirexcellence.org/wp-content/uploads/2024/11/cropped-Untitled-design-92-300x113.png"
+            src="/black-logo.png"
             alt="Inspire Excellence"
-            className="h-10 w-auto object-contain group-hover:opacity-80 transition-opacity duration-200"
+            className="h-8 sm:h-10 md:h-11 lg:h-12 w-auto max-w-[200px] sm:max-w-[250px] object-contain group-hover:opacity-80 transition-all duration-300 "
           />
         </a>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {links.slice(0, -1).map((l) => (
+          {links.map((link) => (
             <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-[#2D3142] hover:text-[#B8860B] transition-colors duration-200 tracking-wide"
+              key={link.label}
+              href={link.href}
+              className="text-[#6B6B6B] hover:text-[#B8860B] font-medium text-sm tracking-wide transition-colors duration-200"
             >
-              {l.label}
+              {link.label}
             </a>
           ))}
           <a
@@ -85,6 +84,13 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
+          <a
+            href="#apply"
+            onClick={() => setMenuOpen(false)}
+            className="w-full text-center px-5 py-3 bg-[#B8860B] text-white text-sm font-semibold rounded-full hover:bg-[#9a7009] transition-all duration-200 shadow-sm mt-2"
+          >
+            Apply Now
+          </a>
         </div>
       </div>
     </header>

@@ -1,6 +1,6 @@
 function VideoPlayer() {
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-[#E8DDD0]"
+    <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-[#E8DDD0] "
       style={{ background: '#111' }}>
       {/* 16:9 aspect-ratio wrapper */}
       <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex items-center overflow-hidden"
+      className="relative flex items-center overflow-hidden z-60"
       style={{
         background: 'linear-gradient(160deg, #FDFAF5 0%, #F8F3EA 40%, #F2EBD8 100%)',
         minHeight: '100dvh',

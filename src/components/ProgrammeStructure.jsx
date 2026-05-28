@@ -98,13 +98,13 @@ export default function ProgrammeStructure() {
           <div className="text-[#D4A017] text-3xl mb-4">✦</div>
           <p className="font-serif text-lg sm:text-xl text-white/90 italic leading-relaxed max-w-3xl mx-auto">
             "The pace and scheduling of sessions are personalised based on your availability,
-            convenience, and depth of work required. This is not a template — it is built around you."
+            convenience, and depth of work required. This is not a template, it is built around you."
           </p>
           <div className="mt-6 h-px w-24 bg-[#B8860B]/50 mx-auto" />
           <p className="mt-6 text-white/50 text-sm leading-relaxed max-w-2xl mx-auto">
             Using neuroscience and behavioral science, this programme goes beneath the surface to the
             exact decision patterns, subconscious blocks, and internal wiring that are recreating the
-            same ceiling — no matter what external changes you make.
+            same ceiling no matter what external changes you make.
           </p>
         </div>
       </div>
