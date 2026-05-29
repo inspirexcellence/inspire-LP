@@ -50,7 +50,7 @@ export default function Outcomes() {
               className={`card-hover bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-6 flex items-start gap-4 transition-all duration-500 ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
-              style={{ transitionDelay: `${i * 80}ms` }}
+              style={{ transitionDelay: `${i * 10}ms` }}
             >
               <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#F5EDD8] flex items-center justify-center mt-0.5">
                 <svg className="w-4 h-4 text-[#B8860B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
