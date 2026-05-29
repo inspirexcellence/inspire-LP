@@ -5,7 +5,7 @@ function VideoPlayer() {
       {/* 16:9 aspect-ratio wrapper */}
       <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
         <iframe
-          src="https://www.youtube.com/embed/JR2pC_6qnl8?si=ZgXDffmw3MnFtYh4"
+          src="https://www.youtube.com/embed/JR2pC_6qnl8?si=ZgXDffmw3MnFtYh4&autoplay=1"
           title="Prerona Roy — Founder Clarity Intensive"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -110,7 +110,7 @@ export default function Hero({ onApplyClick }) {
           </div>
 
           {/* ── RIGHT: Video player ── */}
-          <div className="flex flex-col gap-4 animate-fade-in-up delay-300 w-full">
+          <div className="flex flex-col ml-4 gap-4 animate-fade-in-up delay-300 w-full lg:scale-[1.15] lg:origin-right">
             <VideoPlayer />
 
             {/* Small caption below video */}

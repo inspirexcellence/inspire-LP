@@ -71,7 +71,7 @@ export default function WhoItsFor() {
               <div className=" pt-5">
                 <div className="rounded-2xl overflow-hidden h-56 md:h-60 lg:h-64 relative group">
                   <img 
-                    src="/clarity_growth_pattern.png" 
+                    src="/host-who.png" 
                     alt="Clarity and Growth" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                   />
