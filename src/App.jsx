@@ -34,7 +34,7 @@ function LandingPage() {
   const startApplication = () => navigate('/form')
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Navbar onApplyClick={startApplication} />
       <main>
         <Hero onApplyClick={startApplication} />

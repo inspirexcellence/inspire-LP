@@ -95,22 +95,22 @@ export default function Hero({ onApplyClick }) {
             </div>
 
             {/* Social proof strip */}
-            <div className="mt-10 flex items-center gap-8 animate-fade-in delay-400">
+            <div className="mt-10 grid grid-cols-3 gap-2 sm:gap-8 animate-fade-in delay-400 w-full sm:w-auto">
               {[
                 { value: '500+', label: 'Leaders Transformed' },
                 { value: '2X', label: 'Avg. Business Growth' },
                 { value: '20+', label: 'Years Experience' },
               ].map((s, i) => (
-                <div key={s.label} className={`flex flex-col ${i > 0 ? 'pl-8 border-l border-[#E8DDD0]' : ''}`}>
-                  <span className="font-serif text-2xl font-bold text-[#B8860B]">{s.value}</span>
-                  <span className="text-[10px] font-sans text-[#6B6B6B] tracking-widest uppercase mt-0.5">{s.label}</span>
+                <div key={s.label} className={`flex flex-col ${i > 0 ? 'pl-2 sm:pl-8 border-l border-[#E8DDD0]' : ''}`}>
+                  <span className="font-serif text-lg sm:text-2xl font-bold text-[#B8860B]">{s.value}</span>
+                  <span className="text-[8px] sm:text-[10px] font-sans text-[#6B6B6B] tracking-wider sm:tracking-widest uppercase mt-0.5 leading-tight">{s.label}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* ── RIGHT: Video player ── */}
-          <div className="flex flex-col ml-4 gap-4 animate-fade-in-up delay-300 w-full lg:scale-[1.15] lg:origin-right">
+          <div className="flex flex-col ml-0 lg:ml-4 gap-4 animate-fade-in-up delay-300 w-full lg:scale-[1.15] lg:origin-right">
             <VideoPlayer />
 
             {/* Small caption below video */}
