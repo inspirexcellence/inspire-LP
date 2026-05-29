@@ -33,9 +33,9 @@ const questions = [
   {
     id: 'challenge',
     title: '3. What is the biggest challenge currently affecting your growth or leadership?',
-    subtitle: '(Choose up to 2)',
+    subtitle: '(Choose all that apply)',
     type: 'multi',
-    max: 2,
+    max: 11,
     options: [
       'Business growth has plateaued',
       'I feel mentally overloaded despite success',
@@ -46,7 +46,8 @@ const questions = [
       'Scaling problems & operational chaos',
       'Fear of making the wrong move',
       'Struggling with consistency or focus',
-      'I know I need a deeper internal shift to grow further'
+      'I know I need a deeper internal shift to grow further',
+      'All of the above'
     ]
   },
   {
@@ -151,13 +152,36 @@ export default function ApplyForm() {
     }, 250)
   }
 
-  const handleMultiSelect = (questionId, value, max) => {
+  const handleMultiSelect = (questionId, value, max, allOptions = []) => {
     const current = answers[questionId] || []
-    if (current.includes(value)) {
-      setAnswers(prev => ({ ...prev, [questionId]: current.filter(item => item !== value) }))
-    } else if (current.length < max) {
-      setAnswers(prev => ({ ...prev, [questionId]: [...current, value] }))
+    
+    if (value === 'All of the above') {
+      if (current.includes('All of the above')) {
+        setAnswers(prev => ({ ...prev, [questionId]: [] }))
+      } else {
+        setAnswers(prev => ({ ...prev, [questionId]: [...allOptions] }))
+      }
+      return
     }
+
+    let newSelection = []
+    if (current.includes(value)) {
+      newSelection = current.filter(item => item !== value)
+    } else if (current.length < max) {
+      newSelection = [...current, value]
+    } else {
+      return
+    }
+
+    if (newSelection.includes('All of the above') && current.includes(value)) {
+      newSelection = newSelection.filter(item => item !== 'All of the above')
+    }
+
+    if (allOptions.length > 0 && !newSelection.includes('All of the above') && newSelection.length === allOptions.length - 1) {
+      newSelection.push('All of the above')
+    }
+
+    setAnswers(prev => ({ ...prev, [questionId]: newSelection }))
   }
 
   const handleTextChange = (questionId, value) => {
@@ -274,7 +298,7 @@ export default function ApplyForm() {
                   return (
                     <button
                       key={opt}
-                      onClick={() => handleMultiSelect(questions[currentStep].id, opt, questions[currentStep].max)}
+                      onClick={() => handleMultiSelect(questions[currentStep].id, opt, questions[currentStep].max, questions[currentStep].options)}
                       disabled={isDisabled}
                       className={`w-full text-left px-5 py-3 rounded-xl border-2 transition-all duration-200 ${
                         isSelected 

@@ -14,10 +14,7 @@ function useVisible(threshold = 0.1) {
   return [ref, visible]
 }
 
-const associations = [
-  'TCS', 'L&T', 'Ministry of Defence', 'SBI Institute of Leadership',
-  'John Maxwell Team', 'National Media Recognition',
-]
+
 
 export default function About() {
   const [ref, visible] = useVisible()
@@ -51,16 +48,28 @@ export default function About() {
             </div>
 
             {/* Associations */}
-            <div className="mt-10 bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-[#6B6B6B] font-semibold mb-3">Associated With</p>
-              <div className="flex flex-wrap gap-2">
-                {associations.map((a) => (
-                  <span
-                    key={a}
-                    className="text-xs font-medium text-[#2D3142] bg-white border border-[#E8DDD0] rounded-full px-3 py-1.5 hover:border-[#B8860B]/40 hover:text-[#B8860B] transition-colors"
-                  >
-                    {a}
-                  </span>
+            <div className="mt-10 bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#6B6B6B] font-semibold mb-5">Associated With</p>
+              <div className="flex flex-wrap items-center gap-6 sm:gap-8">
+                <img src="https://i.logos-download.com/113971/29583-9fde4947792aa7b5b379c0b1aee0ead2.png/Tata_Consultancy_Services_Logo_2020.png?dl" alt="TCS" className="h-5 sm:h-6 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
+                <img src="/brands/L&T.png" alt="L&T" className="h-5 sm:h-6 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
+                <img src="/brands/sbi.png" alt="SBI" className="h-5 sm:h-6 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
+                <div className="flex items-center gap-2 transition-all duration-300 opacity-70 hover:opacity-100">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ministry of Defence" className="h-7 sm:h-8 object-contain mix-blend-multiply" />
+                  <span className="text-[10px] font-bold text-[#1A1F36] leading-tight uppercase tracking-wider">Ministry of<br/>Defence</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mentored By */}
+            <div className="mt-4 bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#6B6B6B] font-semibold mb-4">Mentored By</p>
+              <div className="flex flex-wrap gap-5">
+                {['John Maxwell', 'Paul Martinelli', 'Ivan Misner'].map((m) => (
+                  <div key={m} className="flex items-center gap-2 text-sm font-medium text-[#2D3142]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]" />
+                    {m}
+                  </div>
                 ))}
               </div>
             </div>
@@ -97,34 +106,9 @@ export default function About() {
               </p>
 
               <div>
-                <p className="text-[#6B6B6B] leading-relaxed text-sm sm:text-base mb-4">
-                  Her work has extended across renowned organisations such as:
-                </p>
-                <div className="flex flex-wrap items-center gap-8 md:gap-12 lg:gap-16 mb-5 bg-[#FDFAF5] p-5 rounded-2xl border border-[#E8DDD0]">
-                  <img src="https://i.logos-download.com/113971/29583-9fde4947792aa7b5b379c0b1aee0ead2.png/Tata_Consultancy_Services_Logo_2020.png?dl" alt="TCS" className="h-6 sm:h-8 object-contain transition-all duration-300 opacity-60 hover:opacity-100 mix-blend-multiply" />
-                  <img src="/brands/L&T.png" alt="L&T" className="h-6 sm:h-8 object-contain transition-all duration-300 opacity-60 hover:opacity-100 mix-blend-multiply" />
-                  <img src="/brands/sbi.png" alt="SBI" className="h-6 sm:h-8 object-contain transition-all duration-300 opacity-60 hover:opacity-100 mix-blend-multiply" />
-                  <div className="flex items-center gap-2 transition-all duration-300 opacity-60 hover:opacity-100">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ministry of Defence" className="h-8 sm:h-10 object-contain mix-blend-multiply" />
-                    <span className="text-[10px] font-bold text-[#1A1F36] leading-tight uppercase tracking-wider">Ministry of<br/>Defence</span>
-                  </div>
-                </div>
                 <p className="text-[#6B6B6B] leading-relaxed text-sm sm:text-base">
                   She has also been featured and recognised by various national-level media platforms for both her professional impact and her personal transformation journey.
                 </p>
-              </div>
-
-              {/* Mentor row */}
-              <div className="pt-4 border-t border-[#E8DDD0]">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#6B6B6B] font-semibold mb-3">Mentored By</p>
-                <div className="flex flex-wrap gap-3">
-                  {['John Maxwell', 'Paul Martinelli', 'Ivan Misner'].map((m) => (
-                    <div key={m} className="flex items-center gap-2 text-sm text-[#2D3142]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]" />
-                      {m}
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>

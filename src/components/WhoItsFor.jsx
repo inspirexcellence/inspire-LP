@@ -68,12 +68,14 @@ export default function WhoItsFor() {
                   </div>
                 ))}
               </div>
-              <div className="mt-8 flex-1 rounded-2xl overflow-hidden min-h-[200px] relative group">
-                <img 
-                  src="/clarity_growth_pattern.png" 
-                  alt="Clarity and Growth" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                />
+              <div className=" pt-5">
+                <div className="rounded-2xl overflow-hidden h-56 md:h-60 lg:h-64 relative group">
+                  <img 
+                    src="/clarity_growth_pattern.png" 
+                    alt="Clarity and Growth" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -97,7 +99,7 @@ export default function WhoItsFor() {
               </div>
 
               {/* Pull quote */}
-              <div className="mt-auto pt-6">
+              <div className="mt-8">
                 <div className="p-5 rounded-2xl border-l-4 border-[#B8860B] bg-[#F5EDD8]">
                   <p className="font-serif text-[#1A1F36] italic text-sm sm:text-base leading-relaxed">
                     "The next level of your business requires a different version of you."
