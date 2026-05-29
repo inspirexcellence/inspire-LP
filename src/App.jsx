@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -13,14 +13,23 @@ import ApplyForm from './components/ApplyForm'
 
 function LandingPage() {
   const navigate = useNavigate()
-  const location = useLocation()
 
   useEffect(() => {
-    if (location.hash) {
-      const el = document.querySelector(location.hash)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }
-  }, [location])
+    const handleScroll = () => {
+      const path = window.location.pathname.replace('/', '') || 'hero';
+      const el = document.getElementById(path);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    };
+
+    // Handle direct load and back/forward navigation
+    handleScroll();
+    window.addEventListener('popstate', handleScroll);
+    return () => window.removeEventListener('popstate', handleScroll);
+  }, [])
 
   const startApplication = () => navigate('/form')
 
@@ -46,6 +55,11 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/who" element={<LandingPage />} />
+        <Route path="/programme" element={<LandingPage />} />
+        <Route path="/process" element={<LandingPage />} />
+        <Route path="/about" element={<LandingPage />} />
+        <Route path="/faq" element={<LandingPage />} />
         <Route path="/form" element={<ApplyForm />} />
       </Routes>
     </Router>

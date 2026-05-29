@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { scrollToSection } from '../utils/scroll'
 
 export default function Navbar({ onApplyClick }) {
   const [scrolled, setScrolled] = useState(false)
@@ -11,11 +12,11 @@ export default function Navbar({ onApplyClick }) {
   }, [])
 
   const links = [
-    { label: 'Who It\'s For', href: '#who' },
-    { label: 'Programme', href: '#programme' },
-    { label: 'Process', href: '#process' },
-    { label: 'About', href: '#about' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Who It\'s For', id: 'who', href: '/who' },
+    { label: 'Programme', id: 'programme', href: '/programme' },
+    { label: 'Process', id: 'process', href: '/process' },
+    { label: 'About', id: 'about', href: '/about' },
+    { label: 'FAQ', id: 'faq', href: '/faq' },
   ]
 
   return (
@@ -28,7 +29,14 @@ export default function Navbar({ onApplyClick }) {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="inline-block group shrink-0">
+        <a 
+          href="/" 
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection('hero');
+          }}
+          className="inline-block group shrink-0"
+        >
           <img
             src="/black-logo.png"
             alt="Inspire Excellence"
@@ -42,6 +50,10 @@ export default function Navbar({ onApplyClick }) {
             <a
               key={link.label}
               href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(link.id);
+              }}
               className="text-[#6B6B6B] hover:text-[#B8860B] font-medium text-sm tracking-wide transition-colors duration-200"
             >
               {link.label}
@@ -77,9 +89,13 @@ export default function Navbar({ onApplyClick }) {
         <div className="flex flex-col items-center gap-5 px-6">
           {links.map((l) => (
             <a
-              key={l.href}
+              key={l.id}
               href={l.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen(false);
+                scrollToSection(l.id);
+              }}
               className="text-sm font-medium text-[#2D3142] hover:text-[#B8860B] transition-colors"
             >
               {l.label}
