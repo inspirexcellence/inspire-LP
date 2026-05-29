@@ -1,23 +1,7 @@
-import { useState, useEffect } from 'react'
+import React from 'react'
 
-export default function StickyCTA() {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Show after scrolling past 50% of the viewport (roughly past the hero section)
-      if (window.scrollY > window.innerHeight * 0.5) {
-        setVisible(true)
-      } else {
-        setVisible(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Initial check
-    
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+export default function StickyCTA({ onApplyClick }) {
+  
 
   return (
     <div
@@ -38,7 +22,7 @@ export default function StickyCTA() {
 
         {/* Right side button */}
         <a
-          href="#apply"
+          href="#apply" onClick={(e) => { e.preventDefault(); onApplyClick(); }}
           className="flex-shrink-0 flex items-center justify-center gap-2 bg-[#ffe600] hover:bg-[#ebd500] text-black font-bold px-6 py-2.5 rounded-3xl transition-colors shadow-[0_10px_40px_rgba(255,230,0,0.35)] group animate-[zpop_2s_ease-in-out_infinite] text-sm w-full sm:w-auto"
         >
           Apply For The Intensive

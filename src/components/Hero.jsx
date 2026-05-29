@@ -7,7 +7,7 @@ function VideoPlayer() {
         <iframe
           src="https://www.youtube.com/embed/JR2pC_6qnl8?si=ZgXDffmw3MnFtYh4"
           title="Prerona Roy — Founder Clarity Intensive"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
           className="absolute inset-0 w-full h-full border-0"
@@ -18,7 +18,7 @@ function VideoPlayer() {
   )
 }
 
-export default function Hero() {
+export default function Hero({ onApplyClick }) {
   return (
     <section
       id="hero"
@@ -79,7 +79,7 @@ export default function Hero() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-start gap-3 mt-8 animate-fade-in-up delay-300">
               <a
-                href="#apply"
+                href="#apply" onClick={(e) => { e.preventDefault(); onApplyClick(); }}
                 id="hero-cta-apply"
                 className="px-7 py-3.5 bg-[#B8860B] text-white font-semibold rounded-full text-sm hover:bg-[#9a7009] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 tracking-wide"
               >

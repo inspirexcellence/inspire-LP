@@ -145,7 +145,7 @@ function AccordionItem({ question, answer, index, isOpen, onToggle, visible }) {
   )
 }
 
-export default function FAQ() {
+export default function FAQ({ onApplyClick }) {
   const [openId, setOpenId] = useState('0-0') // default open first item
   const [ref, visible] = useVisible()
 
@@ -208,7 +208,7 @@ export default function FAQ() {
             The best way to find out if this is right for you is through a conversation.
           </p>
           <a
-            href="#apply"
+            href="#apply" onClick={(e) => { e.preventDefault(); onApplyClick(); }}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#B8860B] text-white font-semibold rounded-full text-sm hover:bg-[#9a7009] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 tracking-wide"
           >
             Submit Your Application

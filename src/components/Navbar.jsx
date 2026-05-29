@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function Navbar() {
+export default function Navbar({ onApplyClick }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -49,6 +49,7 @@ export default function Navbar() {
           ))}
           <a
             href="#apply"
+            onClick={(e) => { e.preventDefault(); onApplyClick(); }}
             className="ml-2 px-5 py-2.5 bg-[#B8860B] text-white text-sm font-semibold rounded-full hover:bg-[#9a7009] transition-all duration-200 shadow-sm hover:shadow-md tracking-wide"
           >
             Apply Now
@@ -86,7 +87,7 @@ export default function Navbar() {
           ))}
           <a
             href="#apply"
-            onClick={() => setMenuOpen(false)}
+            onClick={(e) => { e.preventDefault(); setMenuOpen(false); onApplyClick(); }}
             className="w-full text-center px-5 py-3 bg-[#B8860B] text-white text-sm font-semibold rounded-full hover:bg-[#9a7009] transition-all duration-200 shadow-sm mt-2"
           >
             Apply Now

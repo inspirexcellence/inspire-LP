@@ -83,7 +83,7 @@ export default function WhoItsFor() {
             <div className="bg-white rounded-3xl border border-[#E8DDD0] p-8 shadow-sm h-full flex flex-col">
               <h3 className="font-serif text-xl font-bold text-[#1A1F36] mb-6 flex items-center gap-3">
                 <span className="w-8 h-8 rounded-full bg-[#F5EDD8] flex items-center justify-center text-sm">✦</span>
-                Especially If <span className="ml-0.1">You…</span>
+                Especially If You…
               </h3>
               <div className="space-y-4">
                 {triggers.map((item, i) => (
