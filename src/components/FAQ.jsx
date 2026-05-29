@@ -200,7 +200,7 @@ export default function FAQ({ onApplyClick }) {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-14 text-center p-8 rounded-3xl border border-[#E8DDD0] bg-[#FDFAF5]">
+        <div className="mt-14 mb-8 md:md-2 lg:mb-2 text-center p-8 rounded-3xl border border-[#E8DDD0] bg-[#FDFAF5]">
           <p className="font-serif text-xl font-bold text-[#1A1F36] mb-2">
             Still have questions?
           </p>
