@@ -5,9 +5,9 @@ export default function StickyCTA({ onApplyClick }) {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0  z-40 transition-all duration-500 ease-in-out flex justify-center pointer-events-none"
+      className="fixed bottom-0 sm:bottom-6 left-0 right-0 z-40 transition-all duration-500 ease-in-out flex justify-center pointer-events-none px-0 sm:px-6"
     >
-      <div className="w-full bg-gradient-to-r from-[#0F0B1A] to-[#26164A] rounded-t-2xl sm:rounded-full shadow-[0_15px_40px_rgba(0,0,0,0.25)] border border-[#3F2B6D]/40 pointer-events-auto">
+      <div className="w-full sm:max-w-5xl bg-gradient-to-r from-[#0F0B1A] to-[#26164A] rounded-t-2xl sm:rounded-full shadow-[0_15px_40px_rgba(0,0,0,0.25)] border border-[#3F2B6D]/40 pointer-events-auto">
         <div className="w-full flex flex-col sm:flex-row items-center justify-between p-4 sm:px-8 sm:py-3.5 gap-4">
         
         {/* Left side text */}
