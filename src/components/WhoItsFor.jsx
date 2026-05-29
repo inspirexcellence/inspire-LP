@@ -25,9 +25,9 @@ const primaryAudience = [
 
 const triggers = [
   'Feel stuck, tired or overloaded',
-  'Know they need deeper clarity before scaling further',
-  'Pivoting into a new role and feel overwhelmed',
-  'Looking for a sounding board while expanding fast',
+  'Need deeper clarity before scaling further',
+  'Are pivoting into a new role and feel overwhelmed',
+  'Are looking for a sounding board while expanding fast',
 ]
 
 export default function WhoItsFor() {

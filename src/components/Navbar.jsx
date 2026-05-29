@@ -40,7 +40,7 @@ export default function Navbar({ onApplyClick }) {
           <img
             src="/black-logo.png"
             alt="Inspire Excellence"
-            className="h-8 sm:h-10 md:h-11 lg:h-12 w-auto max-w-[200px] sm:max-w-[250px] object-contain group-hover:opacity-80 transition-all duration-300 "
+            className="h-10 md:h-11 lg:h-12 w-auto max-w-[200px] sm:max-w-[250px] object-contain"
           />
         </a>
 
