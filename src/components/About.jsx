@@ -50,13 +50,14 @@ export default function About() {
             {/* Associations */}
             <div className="mt-10 bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
               <p className="text-xs uppercase tracking-[0.2em] text-[#6B6B6B] font-semibold mb-5">Associated With</p>
-              <div className="flex flex-wrap items-center gap-6 sm:gap-8">
-                <img src="https://i.logos-download.com/113971/29583-9fde4947792aa7b5b379c0b1aee0ead2.png/Tata_Consultancy_Services_Logo_2020.png?dl" alt="TCS" className="h-5 sm:h-6 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
-                <img src="/brands/L&T.png" alt="L&T" className="h-5 sm:h-6 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
-                <img src="/brands/sbi.png" alt="SBI" className="h-5 sm:h-6 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
+              <div className="flex flex-wrap items-center justify-between gap-y-6 gap-x-4">
+                <img src="https://i.logos-download.com/113971/29583-9fde4947792aa7b5b379c0b1aee0ead2.png/Tata_Consultancy_Services_Logo_2020.png?dl" alt="TCS" className="h-6 sm:h-7 lg:h-8 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
+                <img src="/brands/L&T.png" alt="L&T" className="h-6 sm:h-7 lg:h-8 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
+                <img src="/brands/sbi.png" alt="SBI" className="h-6 sm:h-7 lg:h-8 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
+                <img src="/brands/Max.png" alt="Maxwell-leadership" className="mb-2 h-6 sm:h-7 lg:h-8 object-contain transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" />
                 <div className="flex items-center gap-2 transition-all duration-300 opacity-70 hover:opacity-100">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ministry of Defence" className="h-7 sm:h-8 object-contain mix-blend-multiply" />
-                  <span className="text-[10px] font-bold text-[#1A1F36] leading-tight uppercase tracking-wider">Ministry of<br/>Defence</span>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ministry of Defence" className="h-8 sm:h-9 lg:h-10 object-contain mix-blend-multiply" />
+                  <span className="text-[10px] sm:text-xs font-bold text-[#1A1F36] leading-tight uppercase tracking-wider">Ministry of<br/>Defence</span>
                 </div>
               </div>
             </div>
