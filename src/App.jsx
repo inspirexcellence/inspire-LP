@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { ReactLenis } from 'lenis/react';
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Outcomes from './components/Outcomes'
@@ -52,16 +53,18 @@ function LandingPage() {
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/who" element={<LandingPage />} />
-        <Route path="/programme" element={<LandingPage />} />
-        <Route path="/process" element={<LandingPage />} />
-        <Route path="/about" element={<LandingPage />} />
-        <Route path="/faq" element={<LandingPage />} />
-        <Route path="/form" element={<ApplyForm />} />
-      </Routes>
-    </Router>
+    <ReactLenis root>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/who" element={<LandingPage />} />
+          <Route path="/programme" element={<LandingPage />} />
+          <Route path="/process" element={<LandingPage />} />
+          <Route path="/about" element={<LandingPage />} />
+          <Route path="/faq" element={<LandingPage />} />
+          <Route path="/form" element={<ApplyForm />} />
+        </Routes>
+      </Router>
+    </ReactLenis>
   )
 }
