@@ -22,6 +22,8 @@ const outcomes = [
   'A clearer leadership identity',
   'A more scalable way of operating your business',
   'Long-term behavioural shifts, not temporary motivation',
+  'Greater confidence in high-stakes decisions and difficult conversations',
+  'Improved strategic focus by identifying what truly drives growth'
 ]
 
 export default function Outcomes() {
