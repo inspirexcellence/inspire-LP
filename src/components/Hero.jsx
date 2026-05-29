@@ -5,7 +5,7 @@ function VideoPlayer() {
       {/* 16:9 aspect-ratio wrapper */}
       <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
         <iframe
-          src="https://www.youtube.com/embed/JR2pC_6qnl8?si=ZgXDffmw3MnFtYh4&autoplay=1&mute=1"
+          src="https://www.youtube.com/embed/JR2pC_6qnl8?si=ZgXDffmw3MnFtYh4"
           title="Prerona Roy — Founder Clarity Intensive"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
           referrerPolicy="strict-origin-when-cross-origin"
