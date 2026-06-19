@@ -105,7 +105,7 @@ const questions = [
   },
   {
     id: 'success_definition',
-    title: '9. What would make this programme a success for you over the next 6–12 months?',
+    title: '9. What would make this programme a success for you over the next 6-12 months?',
     type: 'text'
   }
 ]
