@@ -3,8 +3,10 @@ import { useEffect } from 'react'
 import { ReactLenis } from 'lenis/react';
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import ProblemSolution from './components/ProblemSolution'
 import Outcomes from './components/Outcomes'
 import WhoItsFor from './components/WhoItsFor'
+import TransformationStories from './components/TransformationStories'
 import Process from './components/Process'
 import ProgrammeStructure from './components/ProgrammeStructure'
 import About from './components/About'
@@ -39,8 +41,10 @@ function LandingPage() {
       <Navbar onApplyClick={startApplication} />
       <main>
         <Hero onApplyClick={startApplication} />
+        <ProblemSolution />
         <Outcomes />
         <WhoItsFor />
+        <TransformationStories />
         <ProgrammeStructure />
         <Process />
         <About />

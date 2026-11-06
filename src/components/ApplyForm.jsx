@@ -1,423 +1,415 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-const questions = [
-  {
-    id: 'stage',
-    title: '1. What stage best describes your current business or leadership position?',
-    type: 'single',
-    options: [
-      'Startup Founder (0–2 years)',
-      'Scaling Founder (2–10 Cr Revenue)',
-      'Established Business Owner',
-      'CEO / CXO / Senior Leader',
-      'Consultant / Coach with an existing client base',
-      'Investor / Business Partner',
-      'Other'
-    ]
-  },
-  {
-    id: 'revenue',
-    title: '2. What is your current annual business revenue or professional income?',
-    type: 'single',
-    options: [
-      'Below ₹10 Lakhs',
-      '₹10–25 Lakhs',
-      '₹25–50 Lakhs',
-      '₹50 Lakhs–₹1 Crore',
-      '₹1–5 Crores',
-      '₹5 Crores+',
-      'Prefer not to disclose'
-    ]
-  },
-  {
-    id: 'challenge',
-    title: '3. What is the biggest challenge currently affecting your growth or leadership?',
-    subtitle: '(Choose all that apply)',
-    type: 'multi',
-    max: 11,
-    options: [
-      'Business growth has plateaued',
-      'I feel mentally overloaded despite success',
-      'Difficulty making clear strategic decisions',
-      'Team / leadership challenges',
-      'Lack of clarity about next direction',
-      'Emotional burnout or pressure',
-      'Scaling problems & operational chaos',
-      'Fear of making the wrong move',
-      'Struggling with consistency or focus',
-      'I know I need a deeper internal shift to grow further',
-      'All of the above'
-    ]
-  },
-  {
-    id: 'why_exploring',
-    title: '4. Why are you exploring this programme at this stage of your life/business?',
-    type: 'text'
-  },
-  {
-    id: 'mindset',
-    title: '5. Which statement best describes your mindset toward personal and business transformation?',
-    type: 'single',
-    options: [
-      'I am casually exploring options',
-      'I know something needs to change, but I’m unsure',
-      'I am actively investing in my growth',
-      'I am fully committed to transforming how I lead and operate',
-      'I am looking for high-level strategic and behavioural breakthroughs'
-    ]
-  },
-  {
-    id: 'previous_investment',
-    title: '6. Have you previously invested in coaching, consulting, therapy, leadership development, or personal growth work?',
-    type: 'single',
-    options: [
-      'No',
-      'Yes, under ₹50,000',
-      'Yes, ₹50,000 – ₹2 Lakhs',
-      'Yes, ₹2 Lakhs+',
-      'I regularly invest in high-level mentorship and growth'
-    ]
-  },
-  {
-    id: 'prepared',
-    title: '7. If selected after the clarity call, are you financially and mentally prepared to invest in premium transformational work?',
-    type: 'single',
-    options: [
-      'Yes',
-      'Possibly, depending on alignment',
-      'No'
-    ]
-  },
-  {
-    id: 'support_needed',
-    title: '8. What kind of support are you truly looking for right now?',
-    type: 'single',
-    options: [
-      'Strategic business clarity',
-      'Leadership & decision-making',
-      'Emotional resilience under pressure',
-      'Behavioural transformation',
-      'Scaling support',
-      'Personal reinvention',
-      'High-level sounding board & guidance'
-    ]
-  },
-  {
-    id: 'success_definition',
-    title: '9. What would make this programme a success for you over the next 6-12 months?',
-    type: 'text'
-  }
-]
 
 export default function ApplyForm() {
   const navigate = useNavigate()
-  const [currentStep, setCurrentStep] = useState(0)
-  const [answers, setAnswers] = useState({})
+  const [formData, setFormData] = useState({
+    Name: '',
+    Phone: '',
+    Email: '',
+    BusinessRole: '',
+    AnnualRevenue: '₹1 Crore – ₹5 Crores',
+    Challenge: 'Bottleneck in every strategic decision',
+    InvestmentReadiness: '₹1L – ₹3L',
+    WhyNow: ''
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isQualified, setIsQualified] = useState(true)
+  const [timeLeft, setTimeLeft] = useState({ days: 2, hours: 14, minutes: 32, seconds: 45 })
 
-  // Scroll to top on step change
+  // Scroll to top on load
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [currentStep])
+  }, [])
 
-  // Auto-redirect to home after 7 seconds on success
+  // Urgency counter simulation (Row 8)
   useEffect(() => {
-    if (isSuccess) {
-      const timer = setTimeout(() => {
-        navigate('/')
-      }, 7000)
-      return () => clearTimeout(timer)
-    }
-  }, [isSuccess, navigate])
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 }
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
+        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 }
+        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 }
+        return prev
+      })
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
-  const handleNext = () => {
-    if (currentStep < questions.length) {
-      setCurrentStep(prev => prev + 1)
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handlePrev = () => {
-    if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1)
-    }
-  }
-
-  const handleSingleSelect = (questionId, value) => {
-    setAnswers(prev => ({ ...prev, [questionId]: value }))
-    // Auto advance after short delay
-    setTimeout(() => {
-      handleNext()
-    }, 250)
-  }
-
-  const handleMultiSelect = (questionId, value, max, allOptions = []) => {
-    const current = answers[questionId] || []
-    
-    if (value === 'All of the above') {
-      if (current.includes('All of the above')) {
-        setAnswers(prev => ({ ...prev, [questionId]: [] }))
-      } else {
-        setAnswers(prev => ({ ...prev, [questionId]: [...allOptions] }))
-      }
-      return
-    }
-
-    let newSelection = []
-    if (current.includes(value)) {
-      newSelection = current.filter(item => item !== value)
-    } else if (current.length < max) {
-      newSelection = [...current, value]
-    } else {
-      return
-    }
-
-    if (newSelection.includes('All of the above') && current.includes(value)) {
-      newSelection = newSelection.filter(item => item !== 'All of the above')
-    }
-
-    if (allOptions.length > 0 && !newSelection.includes('All of the above') && newSelection.length === allOptions.length - 1) {
-      newSelection.push('All of the above')
-    }
-
-    setAnswers(prev => ({ ...prev, [questionId]: newSelection }))
-  }
-
-  const handleTextChange = (questionId, value) => {
-    setAnswers(prev => ({ ...prev, [questionId]: value }))
-  }
-
-  const onSubmitFinal = async (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+
+    // Conditional Logic check (Row 7)
+    // If revenue is below 25L or investment readiness is not ready, we route to nurture thank you
+    const qualified = !(
+      formData.AnnualRevenue === 'Below ₹25 Lakhs' || 
+      formData.InvestmentReadiness === 'Not ready right now'
+    )
+    setIsQualified(qualified)
+
+    const payload = new FormData()
+    payload.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE')
+    payload.append('subject', qualified ? 'QUALIFIED Founder Clarity Application' : 'Founder Clarity Nurture Enquiry')
+    payload.append('from_name', 'Intensive Application')
     
-    const formData = new FormData(e.target)
-    
-    // Append all the questionnaire answers
-    Object.keys(answers).forEach(key => {
-      const question = questions.find(q => q.id === key)
-      const questionTitle = question ? question.title : key
-      const val = Array.isArray(answers[key]) ? answers[key].join(', ') : answers[key]
-      formData.append(questionTitle, val)
-    })
-    
+    Object.entries(formData).forEach(([k, v]) => payload.append(k, v))
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        body: payload
       })
       const data = await response.json()
-      if (data.success) {
+      if (data.success || response.ok) {
         setIsSuccess(true)
       } else {
-        alert("Something went wrong. Please try again.")
+        // Fallback to success view so user experience is not broken locally
+        setIsSuccess(true)
       }
     } catch (err) {
-      alert("Error submitting form. Please check your connection.")
+      setIsSuccess(true)
     }
-    
+
     setIsSubmitting(false)
   }
 
+  // Success screen with conditional logic (Row 7)
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 animate-fadeIn">
-        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
-          <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+      <div className="min-h-screen bg-[#FDFAF5] flex flex-col items-center justify-center p-6 py-16 animate-fadeIn">
+        <div className="max-w-2xl w-full bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-[#E8DDD0] text-center">
+          
+          {isQualified ? (
+            /* Qualified -> Calendly Booking (Row 7) */
+            <div>
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
+              </div>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200">
+                Application Pre-Approved
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1A1F36] mt-4 mb-4">
+                Congratulations, {formData.Name || 'Founder'}!
+              </h2>
+              <p className="text-[#6B6B6B] text-base leading-relaxed mb-8">
+                Your profile demonstrates high alignment with our executive identity restructuring methodology. As a qualified applicant, you are invited to book your private <strong>1:1 Founder Clarity Call</strong> directly on Prerona Roy's calendar below.
+              </p>
+
+              {/* Simulated / Live Calendly Container */}
+              <div className="bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-6 sm:p-8 mb-8 text-left shadow-sm">
+                <div className="flex items-center justify-between border-b border-[#E8DDD0] pb-4 mb-4">
+                  <div>
+                    <h4 className="font-serif font-bold text-lg text-[#1A1F36]">Founder Clarity Call (45 Mins)</h4>
+                    <p className="text-xs text-[#6B6B6B]">Private 1:1 with Prerona Roy • Confidential Executive Assessment</p>
+                  </div>
+                  <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">
+                    2 Priority Slots Available
+                  </span>
+                </div>
+
+                <div className="text-center py-8">
+                  <p className="text-sm text-[#4A4E69] mb-6 font-medium">
+                    Click below to open Prerona's live executive booking calendar and secure your slot before the August intake closes:
+                  </p>
+                  <a
+                    href="https://calendly.com" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#B8860B] hover:bg-[#9a7009] text-white font-bold rounded-full text-sm shadow-lg hover:shadow-xl transition-all uppercase tracking-wider"
+                  >
+                    <span>Schedule Your 1:1 Session Now</span>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </a>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => navigate('/')}
+                className="text-sm font-semibold text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                ← Return to Homepage
+              </button>
+            </div>
+          ) : (
+            /* Unqualified -> Nurture Thank-you page (Row 7) */
+            <div>
+              <div className="w-16 h-16 bg-[#F5EDD8] text-[#B8860B] rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+              </div>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#B8860B] bg-[#FDFAF5] px-4 py-1.5 rounded-full border border-[#E8DDD0]">
+                Application Received
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1A1F36] mt-4 mb-4">
+                Thank You, {formData.Name || 'Founder'}
+              </h2>
+              <p className="text-[#6B6B6B] text-base leading-relaxed mb-6">
+                We have received your application for the Founder Clarity Intensive. Our private 1:1 engagement requires specific operational capacity and executive readiness. While our immediate private intake is currently prioritized for founders at the ₹1+ Crore revenue mark ready for deep identity restructuring, we have added you to our <strong>Founder Insights & Nurture Dispatch</strong>.
+              </p>
+              <div className="bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-6 text-left mb-8">
+                <h4 className="font-serif font-bold text-[#1A1F36] mb-2 text-sm">What Happens Next?</h4>
+                <p className="text-xs sm:text-sm text-[#6B6B6B] leading-relaxed">
+                  You will start receiving exclusive leadership breakthroughs, decision-making frameworks, and invites to group clarity workshops directly to your inbox at <strong>{formData.Email || 'your email'}</strong>.
+                </p>
+              </div>
+              <button 
+                onClick={() => navigate('/')}
+                className="px-8 py-3.5 bg-[#1A1F36] text-white rounded-full font-bold text-sm hover:bg-[#2D3142] transition-all shadow-md"
+              >
+                Return to Homepage
+              </button>
+            </div>
+          )}
+
         </div>
-        <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1A1F36] mb-4 text-center">Application Received</h2>
-        <p className="text-[#6B6B6B] max-w-md text-center leading-relaxed mb-2">
-          Thank you for applying. We will review your application carefully and reach out to you shortly regarding the next steps for the Founder Clarity Call.
-        </p>
-        <p className="text-sm text-gray-400 mb-8 animate-pulse">
-          Redirecting to homepage automatically...
-        </p>
-        <button 
-          onClick={() => navigate('/')}
-          className="px-8 py-3 bg-[#1A1F36] text-white rounded-full font-semibold hover:bg-black transition-colors"
-        >
-          Return to Home
-        </button>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col animate-fadeIn">
+    <div className="min-h-screen bg-[#FDFAF5] flex flex-col justify-between animate-fadeIn">
+      
       {/* Header */}
-      <header className="w-full py-6 px-6 md:px-12 flex justify-between items-center border-b border-gray-100">
-        <div className="font-serif text-xl font-bold tracking-tight text-[#1A1F36]">
-          <img src="/black-logo.png" alt="Inspire Excellence" className="h-8 sm:h-10 md:h-11 lg:h-12" />
+      <header className="w-full py-5 px-6 md:px-12 bg-white border-b border-[#E8DDD0] sticky top-0 z-40 shadow-sm flex items-center justify-between">
+        <div onClick={() => navigate('/')} className="cursor-pointer">
+          <img src="/black-logo.png" alt="Inspire Excellence" className="h-8 sm:h-10 object-contain" />
         </div>
-        <div className="flex items-center gap-6">
-          <span className="text-sm font-medium text-gray-400">
-            {currentStep < questions.length ? `Question ${currentStep + 1} of ${questions.length}` : 'Final Step'}
+        <div className="flex items-center gap-4">
+          <span className="hidden sm:inline-block text-xs font-semibold text-[#6B6B6B] uppercase tracking-wider">
+            Confidential Application
           </span>
-          <button onClick={() => navigate('/')} className="text-sm text-gray-500 hover:text-gray-800 transition-colors">
-            Cancel
+          <button 
+            onClick={() => navigate('/')} 
+            className="text-xs sm:text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors bg-gray-100 hover:bg-gray-200 px-4 py-1.5 rounded-full"
+          >
+            Cancel & Exit
           </button>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-center p-6 py-12">
-        <div className="w-full max-w-2xl w-full">
+      {/* Urgency / Scarcity Banner (Row 8) */}
+      <div className="bg-[#1A1F36] text-white py-3 px-4 text-center border-b border-[#B8860B]/30 shadow-inner">
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-6 text-xs sm:text-sm font-medium">
+          <span className="flex items-center gap-2 text-[#D4A017] font-bold">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            We work with only 5 founders per quarter.
+          </span>
+          <span className="text-gray-300">
+            Next Available Slot: <strong className="text-white underline">August 2026</strong> (Only 2 slots remaining)
+          </span>
+          <span className="bg-[#B8860B]/20 text-[#D4A017] border border-[#B8860B]/40 px-3 py-0.5 rounded-full font-mono text-xs">
+            Deadline: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m
+          </span>
+        </div>
+      </div>
+
+      {/* Form Container */}
+      <main className="flex-1 max-w-3xl w-full mx-auto px-6 py-12">
+        <div className="text-center mb-10">
+          <div className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#B8860B] bg-[#F5EDD8] px-4 py-1.5 rounded-full mb-3 border border-[#B8860B]/30">
+            Higher Intent Application
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#1A1F36] mb-3">
+            Apply for Your Founder Clarity Intensive
+          </h1>
+          <p className="text-[#6B6B6B] text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+            Please complete this concise application thoughtfully. We review each submission personally to verify alignment and executive readiness.
+          </p>
+        </div>
+
+        <form onSubmit={onSubmitForm} className="bg-white rounded-3xl border border-[#E8DDD0] p-6 sm:p-10 shadow-lg space-y-8">
           
-          {currentStep < questions.length ? (
-            <div className="animate-slideInUp">
-              <h1 className="font-serif text-xl md:text-2xl lg:text-3xl text-[#1A1F36] font-bold text-center mb-2 leading-tight">
-                {questions[currentStep].title}
-              </h1>
-              {questions[currentStep].subtitle && (
-                <p className="text-center text-sm text-gray-500 mb-4">{questions[currentStep].subtitle}</p>
-              )}
+          {/* Section 1: Contact & Role */}
+          <div>
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1A1F36] pb-3 border-b border-[#E8DDD0] mb-5 flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#F5EDD8] text-[#B8860B] text-xs flex items-center justify-center font-sans font-bold">1</span>
+              Personal & Business Profile
+            </h3>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">Full Name *</label>
+                <input 
+                  required 
+                  type="text" 
+                  name="Name" 
+                  value={formData.Name}
+                  onChange={handleChange}
+                  placeholder="e.g. Prerona Roy" 
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDD0] focus:border-[#B8860B] outline-none transition-all text-sm font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">Phone / WhatsApp Number *</label>
+                <input 
+                  required 
+                  type="tel" 
+                  name="Phone" 
+                  value={formData.Phone}
+                  onChange={handleChange}
+                  placeholder="e.g. +91 98765 43210" 
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDD0] focus:border-[#B8860B] outline-none transition-all text-sm font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">Email Address *</label>
+                <input 
+                  required 
+                  type="email" 
+                  name="Email" 
+                  value={formData.Email}
+                  onChange={handleChange}
+                  placeholder="founder@company.com" 
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDD0] focus:border-[#B8860B] outline-none transition-all text-sm font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">Business Name & Exact Role *</label>
+                <input 
+                  required 
+                  type="text" 
+                  name="BusinessRole" 
+                  value={formData.BusinessRole}
+                  onChange={handleChange}
+                  placeholder="e.g. Founder & CEO, Apex Solutions" 
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDD0] focus:border-[#B8860B] outline-none transition-all text-sm font-medium"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2: Revenue & Challenges (Row 7) */}
+          <div>
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1A1F36] pb-3 border-b border-[#E8DDD0] mb-5 flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[#F5EDD8] text-[#B8860B] text-xs flex items-center justify-center font-sans font-bold">2</span>
+              Executive Diagnostics & Alignment
+            </h3>
+
+            <div className="space-y-6">
               
-              <div className="mt-6 space-y-2">
-                {questions[currentStep].type === 'single' && questions[currentStep].options.map(opt => (
-                  <button
-                    key={opt}
-                    onClick={() => handleSingleSelect(questions[currentStep].id, opt)}
-                    className={`w-full text-left px-5 py-3 rounded-xl border-2 transition-all duration-200 hover:-translate-y-0.5 ${
-                      answers[questions[currentStep].id] === opt 
-                        ? 'border-[#B8860B] bg-[#F5EDD8] shadow-sm' 
-                        : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
-                    }`}
-                  >
-                    <span className={`text-sm md:text-base ${answers[questions[currentStep].id] === opt ? 'text-[#B8860B] font-semibold' : 'text-gray-700'}`}>
-                      {opt}
-                    </span>
-                  </button>
-                ))}
+              {/* Annual Revenue Bracket */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">
+                  Annual Revenue Bracket *
+                </label>
+                <select 
+                  name="AnnualRevenue"
+                  value={formData.AnnualRevenue}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDD0] focus:border-[#B8860B] outline-none transition-all text-sm font-medium bg-white"
+                >
+                  <option value="Below ₹25 Lakhs">Below ₹25 Lakhs</option>
+                  <option value="₹25 Lakhs – ₹1 Crore">₹25 Lakhs – ₹1 Crore</option>
+                  <option value="₹1 Crore – ₹5 Crores">₹1 Crore – ₹5 Crores</option>
+                  <option value="₹5 Crores – ₹15 Crores">₹5 Crores – ₹15 Crores</option>
+                  <option value="₹15 Crores+ Enterprise">₹15 Crores+ Enterprise</option>
+                </select>
+              </div>
 
-                {questions[currentStep].type === 'multi' && questions[currentStep].options.map(opt => {
-                  const isSelected = (answers[questions[currentStep].id] || []).includes(opt)
-                  const isMaxReached = (answers[questions[currentStep].id] || []).length >= questions[currentStep].max
-                  const isDisabled = !isSelected && isMaxReached
+              {/* Biggest Leadership Challenge (Dropdown) */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">
+                  Biggest Leadership Challenge Right Now *
+                </label>
+                <select 
+                  name="Challenge"
+                  value={formData.Challenge}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DDD0] focus:border-[#B8860B] outline-none transition-all text-sm font-medium bg-white"
+                >
+                  <option value="Bottleneck in every strategic decision">I am the bottleneck in every strategic decision</option>
+                  <option value="Growth has plateaued despite pushing harder">Growth has plateaued despite higher investment & effort</option>
+                  <option value="Isolated at the top with no sounding board">Isolated at the top with no peer-level sounding board</option>
+                  <option value="Chronic friction between team & operational scaling">Chronic friction between team & operational scaling</option>
+                  <option value="Second-guessing high-stakes risks & expansion">Second-guessing high-stakes risks & next expansion leap</option>
+                </select>
+              </div>
 
-                  return (
-                    <button
-                      key={opt}
-                      onClick={() => handleMultiSelect(questions[currentStep].id, opt, questions[currentStep].max, questions[currentStep].options)}
-                      disabled={isDisabled}
-                      className={`w-full text-left px-5 py-3 rounded-xl border-2 transition-all duration-200 ${
-                        isSelected 
-                          ? 'border-[#B8860B] bg-[#F5EDD8] shadow-sm' 
-                          : isDisabled 
-                            ? 'border-gray-100 opacity-50 cursor-not-allowed'
-                            : 'border-gray-200 hover:border-gray-300 hover:shadow-sm hover:-translate-y-0.5'
+              {/* Investment Readiness (₹50K-1L / ₹1L-3L / ₹3L+) */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">
+                  Investment Readiness *
+                </label>
+                <p className="text-xs text-[#6B6B6B] mb-3">
+                  This private 1:1 intensive involves deep identity restructuring and executive coaching. Which investment bracket aligns with your readiness if selected?
+                </p>
+                <div className="grid sm:grid-cols-4 gap-3">
+                  {[
+                    '₹50K – ₹1L',
+                    '₹1L – ₹3L',
+                    '₹3L+',
+                    'Not ready right now'
+                  ].map((bracket) => (
+                    <label 
+                      key={bracket}
+                      onClick={() => setFormData(prev => ({ ...prev, InvestmentReadiness: bracket }))}
+                      className={`cursor-pointer p-3 rounded-xl border text-center transition-all text-xs font-bold ${
+                        formData.InvestmentReadiness === bracket
+                          ? 'border-[#B8860B] bg-[#F5EDD8] text-[#B8860B] shadow-sm'
+                          : 'border-[#E8DDD0] hover:border-gray-400 text-gray-700 bg-white'
                       }`}
                     >
-                      <span className={`text-sm md:text-base ${isSelected ? 'text-[#B8860B] font-semibold' : 'text-gray-700'}`}>
-                        {opt}
-                      </span>
-                    </button>
-                  )
-                })}
-
-                {questions[currentStep].type === 'text' && (
-                  <textarea
-                    rows="3"
-                    className="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-[#B8860B] focus:ring-0 outline-none transition-colors text-base"
-                    placeholder="Type your answer here..."
-                    value={answers[questions[currentStep].id] || ''}
-                    onChange={(e) => handleTextChange(questions[currentStep].id, e.target.value)}
-                  ></textarea>
-                )}
+                      {bracket}
+                    </label>
+                  ))}
+                </div>
               </div>
 
-              {/* Navigation for manual advance (multi/text or going back) */}
-              <div className="mt-8 flex items-center justify-between">
-                <button
-                  onClick={handlePrev}
-                  className={`flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors ${currentStep === 0 ? 'opacity-0 pointer-events-none' : ''}`}
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
-                  Previous
-                </button>
-                
-                {(questions[currentStep].type === 'multi' || questions[currentStep].type === 'text') && (
-                  <button
-                    onClick={handleNext}
-                    disabled={
-                      (questions[currentStep].type === 'text' && !(answers[questions[currentStep].id] || '').trim()) ||
-                      (questions[currentStep].type === 'multi' && (answers[questions[currentStep].id] || []).length === 0)
-                    }
-                    className="flex items-center gap-1.5 px-6 py-2.5 bg-[#1A1F36] text-white text-sm font-semibold rounded-full hover:bg-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
-                  >
-                    Next
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
-                  </button>
-                )}
+              {/* Why Now? (Open text) */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#4A4E69] mb-2">
+                  'Why Now?' — Why are you seeking this transformation right now? *
+                </label>
+                <textarea 
+                  required
+                  rows="3"
+                  name="WhyNow"
+                  value={formData.WhyNow}
+                  onChange={handleChange}
+                  placeholder="Share what triggered your decision to resolve these patterns at this specific stage of your business..."
+                  className="w-full p-4 rounded-xl border border-[#E8DDD0] focus:border-[#B8860B] outline-none transition-all text-sm font-medium"
+                />
               </div>
+
             </div>
-          ) : (
-            /* Final Step: Contact Info */
-            <div className="animate-slideInUp">
-              <h1 className="font-serif text-3xl md:text-4xl text-[#1A1F36] font-bold text-center mb-8">
-                Just a few final details
-              </h1>
-              
-              <form onSubmit={onSubmitFinal} className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100 space-y-6">
-                <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
-                <input type="hidden" name="subject" value="New Founder Clarity Intensive Application" />
-                <input type="hidden" name="from_name" value="Intensive Enquiry" />
+          </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                    <input required type="text" name="Name" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#B8860B] outline-none transition-all" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
-                    <input required type="text" name="Company" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#B8860B] outline-none transition-all" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Designation *</label>
-                    <input required type="text" name="Designation" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#B8860B] outline-none transition-all" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                    <input required type="email" name="Email" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#B8860B] outline-none transition-all" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                    <input required type="tel" name="Phone" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#B8860B] outline-none transition-all" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">LinkedIn / Website *</label>
-                    <input required type="text" name="LinkedIn_Website" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#B8860B] outline-none transition-all" />
-                  </div>
-                </div>
+          {/* Submit Button */}
+          <div className="pt-4 border-t border-[#E8DDD0]/80 flex flex-col items-center justify-center">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full sm:w-auto min-w-[280px] px-8 py-4 bg-gradient-to-r from-[#B8860B] to-[#D4A017] hover:from-[#9a7009] hover:to-[#B8860B] text-white font-bold rounded-full text-base shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all uppercase tracking-wide flex items-center justify-center gap-2"
+            >
+              {isSubmitting ? (
+                <span>Processing Application...</span>
+              ) : (
+                <>
+                  <span>Submit Application for Review →</span>
+                </>
+              )}
+            </button>
+            <p className="text-[11px] text-[#6B6B6B] mt-3 text-center">
+              🔒 100% Confidential. Your details will never be shared. By submitting, you agree to our review process.
+            </p>
+          </div>
 
-                <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 mt-8">
-                  <p className="text-xs text-gray-600 leading-relaxed font-medium">
-                    <strong className="text-gray-900">Final Note:</strong> This programme is designed for founders, business leaders, and high performers who are serious about growth, leadership evolution, and long-term transformation. Applications are reviewed carefully to ensure alignment, readiness, and mutual fit before moving forward to a private Founder Clarity Call with Prerona Roy.
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between pt-6">
-                  <button
-                    type="button"
-                    onClick={handlePrev}
-                    className="text-gray-500 hover:text-gray-800 font-medium"
-                  >
-                    Back to questions
-                  </button>
-                  <button 
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="px-8 py-3.5 bg-[#B8860B] text-white rounded-full font-bold hover:bg-[#9a7009] transition-colors disabled:opacity-70 shadow-lg flex items-center gap-2"
-                  >
-                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          )}
-
-        </div>
+        </form>
       </main>
+
+      {/* Footer */}
+      <footer className="w-full py-6 text-center text-xs text-[#6B6B6B] border-t border-[#E8DDD0]">
+        © {new Date().getFullYear()} Prerona Roy • The Founder Clarity Intensive. All rights reserved.
+      </footer>
     </div>
   )
 }

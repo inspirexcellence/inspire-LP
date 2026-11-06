@@ -89,6 +89,67 @@ export default function ProgrammeStructure() {
           ))}
         </div>
 
+        {/* 4-Step Core Methodology (Row 6) */}
+        <div className="mt-4 mb-16">
+          <div className="text-center mb-12">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#D4A017] mb-2">
+              What Happens in Your Founder Clarity Intensive
+            </h3>
+            <p className="text-white/70 text-sm sm:text-base max-w-2xl mx-auto">
+              A precise, 4-phase transformation process combining deep subconscious restructuring with actionable executive execution.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                step: 'Phase 01',
+                title: 'Identity Audit',
+                desc: 'Deep subconscious pattern mapping to uncover the exact psychological limits holding back decision speed and scalability.',
+                icon: '🔍'
+              },
+              {
+                step: 'Phase 02',
+                title: 'Neural Rewiring',
+                desc: 'Biochemical and neurological reprogramming to eliminate chronic friction, anxiety, and second-guessing at high stakes.',
+                icon: '🧠'
+              },
+              {
+                step: 'Phase 03',
+                title: 'Strategic Blueprint',
+                desc: 'Clear 90-day execution roadmap tailored to your business model, leadership team, and revenue targets.',
+                icon: '🗺️'
+              },
+              {
+                step: 'Phase 04',
+                title: 'Ongoing Support',
+                desc: 'Post-intensive check-ins to ensure seamless operational integration, sustained emotional autonomy, and zero regression.',
+                icon: '🤝'
+              }
+            ].map((p, idx) => (
+              <div 
+                key={p.step}
+                className="bg-white/[0.03] border border-white/10 hover:border-[#D4A017]/80 hover:bg-white/[0.07] rounded-3xl p-7 backdrop-blur-xl flex flex-col justify-between transition-all duration-500 shadow-[0_15px_35px_rgba(0,0,0,0.5)] group hover:-translate-y-2"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-3xl p-3 rounded-2xl bg-white/5 border border-white/10 shadow-inner group-hover:scale-110 transition-transform">{p.icon}</span>
+                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#D4A017] bg-[#B8860B]/15 px-3 py-1.5 rounded-full border border-[#B8860B]/40 shadow-sm">
+                      {p.step}
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-[#F5EDD8] transition-colors">
+                    {p.title}
+                  </h4>
+                  <p className="text-white/70 text-xs sm:text-sm leading-relaxed font-sans">
+                    {p.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Description card */}
         <div
           className={`bg-white/5 border border-[#B8860B]/30 rounded-3xl p-8 sm:p-10 text-center backdrop-blur-sm transition-all duration-700 delay-500 ${

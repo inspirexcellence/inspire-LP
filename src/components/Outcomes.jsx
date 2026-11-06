@@ -43,21 +43,21 @@ export default function Outcomes() {
         </div>
 
         {/* Outcomes grid */}
-        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {outcomes.map((item, i) => (
             <div
               key={i}
-              className={`card-hover bg-[#FDFAF5] border border-[#E8DDD0] rounded-2xl p-6 flex items-start gap-4 transition-all duration-500 ${
+              className={`bg-white border border-[#E8DDD0] hover:border-[#B8860B]/60 rounded-3xl p-7 flex items-start gap-4 transition-all duration-500 shadow-[0_10px_30px_-10px_rgba(26,31,54,0.06)] hover:shadow-[0_20px_45px_-10px_rgba(184,134,11,0.18)] hover:-translate-y-1.5 group ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
-              style={{ transitionDelay: `${i * 10}ms` }}
+              style={{ transitionDelay: `${i * 30}ms` }}
             >
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#F5EDD8] flex items-center justify-center mt-0.5">
-                <svg className="w-4 h-4 text-[#B8860B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <div className="flex-shrink-0 w-9 h-9 rounded-2xl bg-gradient-to-br from-[#B8860B] to-[#D4A017] flex items-center justify-center mt-0.5 shadow-md group-hover:scale-110 transition-transform">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <p className="text-[#2D3142] font-sans text-sm sm:text-base leading-relaxed font-medium">
+              <p className="text-[#1A1F36] font-sans text-sm sm:text-base leading-relaxed font-semibold">
                 {item}
               </p>
             </div>
