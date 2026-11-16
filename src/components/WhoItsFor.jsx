@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 function useVisible(threshold = 0.15) {
   const ref = useRef(null)
@@ -29,6 +31,108 @@ const triggers = [
   'Are pivoting into a new role and feel overwhelmed',
   'Are looking for a sounding board while expanding fast',
 ]
+
+const sliderImages = [
+  { src: '/WhoIts/IMG_4370.jpg', alt: 'Leadership intensive workshop' },
+  { src: '/WhoIts/IMG_4386.jpg', alt: 'Founder clarity transformation session' },
+  { src: '/WhoIts/train1.jpg', alt: 'Corporate leadership program' },
+  { src: '/WhoIts/train2.jpg', alt: 'Founder group mentorship' },
+]
+
+function ImageSlider() {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, duration: 25 },
+    [Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true })]
+  )
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    emblaApi.on('select', onSelect)
+    onSelect()
+    return () => {
+      emblaApi.off('select', onSelect)
+    }
+  }, [emblaApi, onSelect])
+
+  const scrollPrev = useCallback((e) => {
+    e.preventDefault()
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = useCallback((e) => {
+    e.preventDefault()
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
+
+  const scrollTo = useCallback((idx) => {
+    if (emblaApi) emblaApi.scrollTo(idx)
+  }, [emblaApi])
+
+  return (
+    <div className="relative group/slider rounded-2xl overflow-hidden border border-[#E8DDD0] shadow-sm select-none">
+      {/* Viewport */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {sliderImages.map((img, idx) => (
+            <div key={idx} className="flex-[0_0_100%] min-w-0 relative h-60 sm:h-64 md:h-72 bg-[#1A1F36]/5">
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/slider:scale-105"
+                loading={idx === 0 ? 'eager' : 'lazy'}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Prev / Next Chevrons */}
+      <button
+        type="button"
+        onClick={scrollPrev}
+        aria-label="Previous photo"
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/85 backdrop-blur-sm border border-[#E8DDD0] flex items-center justify-center text-[#1A1F36] opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-md z-10 cursor-pointer"
+      >
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        onClick={scrollNext}
+        aria-label="Next photo"
+        className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/85 backdrop-blur-sm border border-[#E8DDD0] flex items-center justify-center text-[#1A1F36] opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-md z-10 cursor-pointer"
+      >
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Slide Indicators / Dots */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10 bg-black/40 backdrop-blur-sm px-2.5 py-1.5 rounded-full">
+        {sliderImages.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => scrollTo(idx)}
+            aria-label={`Go to photo ${idx + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+              selectedIndex === idx ? 'w-5 bg-[#D4A017]' : 'w-1.5 bg-white/60 hover:bg-white'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function WhoItsFor() {
   const [ref, visible] = useVisible()
@@ -68,14 +172,8 @@ export default function WhoItsFor() {
                   </div>
                 ))}
               </div>
-              <div className=" pt-5">
-                <div className="rounded-2xl overflow-hidden h-56 md:h-60 lg:h-64 relative group">
-                  <img 
-                    src="/who-hero.jpg" 
-                    alt="Clarity and Growth" 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  />
-                </div>
+              <div className="pt-5">
+                <ImageSlider />
               </div>
             </div>
           </div>
