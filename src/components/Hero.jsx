@@ -151,7 +151,7 @@ export default function Hero({ onApplyClick }) {
               {/* Right Section: 2-line slot text */}
               <div className="flex flex-col justify-center text-xs sm:text-[13px] font-bold uppercase tracking-wider leading-snug z-10">
                 <span className="text-[#6B6B6B] text-[10px] sm:text-[11px] tracking-widest mb-0.5">NEXT AVAILABLE SLOT</span>
-                <span className="text-[#B8860B] font-extrabold text-xs sm:text-[14px]">AUGUST 2026</span>
+                <span className="text-[#B8860B] font-extrabold text-xs sm:text-[14px]">JANUARY 2027</span>
               </div>
             </div>
           </div>
