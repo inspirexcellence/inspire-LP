@@ -96,7 +96,7 @@ export default function ProgrammeStructure() {
               What Happens in Your Founder Clarity Intensive
             </h3>
             <p className="text-white/70 text-sm sm:text-base max-w-2xl mx-auto">
-              A precise, 4-phase transformation process combining deep subconscious restructuring with actionable executive execution.
+              A precise, 4-phase transformation process combining deep unconscious restructuring with actionable executive execution.
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export default function ProgrammeStructure() {
               {
                 step: 'Phase 01',
                 title: 'Identity Audit',
-                desc: 'Deep subconscious pattern mapping to uncover the exact psychological limits holding back decision speed and scalability.',
+                desc: 'Deep unconscious pattern mapping to uncover the exact psychological limits holding back decision speed and scalability.',
                 icon: '🔍'
               },
               {
@@ -164,7 +164,7 @@ export default function ProgrammeStructure() {
           <div className="mt-6 h-px w-24 bg-[#B8860B]/50 mx-auto" />
           <p className="mt-6 text-white/50 text-sm leading-relaxed max-w-2xl mx-auto">
             Using neuroscience and behavioral science, this programme goes beneath the surface to the
-            exact decision patterns, subconscious blocks, and internal wiring that are recreating the
+            exact decision patterns, unconscious blocks, and internal wiring that are recreating the
             same ceiling no matter what external changes you make.
           </p>
         </div>

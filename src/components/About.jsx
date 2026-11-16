@@ -33,15 +33,15 @@ export default function About() {
           {/* Left: Image + quick facts */}
           <div className={`transition-all duration-700 w-full min-w-0 max-w-full ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'}`}>
             {/* Image */}
-            <div className="relative mb-10 sm:mb-8 w-full max-w-md mx-auto lg:max-w-none">
+            <div className="relative mb-10 sm:mb-8 w-full max-w-[310px] sm:max-w-[340px] aspect-square mx-auto">
               <div className="absolute -inset-2 sm:-inset-3 rounded-3xl bg-gradient-to-br from-[#B8860B]/20 to-[#F5EDD8] -z-10" />
               <img
-                src="/host.png"
+                src="/new-host.jpg"
                 alt="Prerona Roy — Executive Consultant and Behaviour Transformation Expert"
-                className="w-full h-auto rounded-3xl object-cover shadow-xl max-h-[460px] sm:max-h-none object-top mx-auto"
+                className="w-full h-full rounded-3xl object-cover shadow-xl mx-auto"
               />
               {/* Floating badge */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#E8DDD0] rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 shadow-lg text-center w-[90%] sm:w-auto max-w-[320px] sm:max-w-none z-20">
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#E8DDD0] rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 shadow-lg text-center w-[92%] sm:w-max max-w-[320px] sm:max-w-none z-20">
                 <p className="font-serif text-xs sm:text-sm font-bold text-[#1A1F36]">Prerona Roy</p>
                 <p className="text-[10px] sm:text-xs text-[#B8860B] font-medium tracking-wide leading-tight mt-0.5">Entrepreneur · Consultant · Transformation Expert</p>
               </div>

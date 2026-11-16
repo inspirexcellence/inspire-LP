@@ -24,7 +24,7 @@ const faqs = [
       },
       {
         q: 'How is this different from regular coaching or consulting?',
-        a: 'Unlike regular coaching or consulting that mainly focuses on external strategies, advice, or accountability, this intensive works on both the internal and external dimensions of growth. Internally, it helps founders identify the subconscious patterns, mindset limitations, emotional pressures, and decision-making behaviours that silently create recurring bottlenecks, stress, or stagnation. Externally, it helps translate those internal shifts into stronger leadership, clearer decisions, better strategic thinking, improved team dynamics, and more scalable business growth. This is not surface-level motivation or generic consulting. It is a deep identity and behavioural transformation process combined with practical business and leadership application designed to create meaningful, long-term results.',
+        a: 'Unlike regular coaching or consulting that mainly focuses on external strategies, advice, or accountability, this intensive works on both the internal and external dimensions of growth. Internally, it helps founders identify the unconscious patterns, mindset limitations, emotional pressures, and decision-making behaviours that silently create recurring bottlenecks, stress, or stagnation. Externally, it helps translate those internal shifts into stronger leadership, clearer decisions, better strategic thinking, improved team dynamics, and more scalable business growth. This is not surface-level motivation or generic consulting. It is a deep identity and behavioural transformation process combined with practical business and leadership application designed to create meaningful, long-term results.',
       },
       {
         q: 'What results can I realistically expect?',
@@ -61,12 +61,12 @@ const faqs = [
         a: 'The pre-qualifying call is a brief conversation to understand your current business situation, leadership challenges, and the outcomes you are looking to achieve. It also helps Prerona evaluate whether this high-impact programme genuinely aligns with your goals and stage of growth. There is no pressure or sales pitch, it is simply a mutual assessment.',
       },
       {
-        q: 'What is the Founder Clarity Call and how does it differ from the pre-qualifying call?',
-        a: 'After the pre-qualifying call, the next step is a deeper Founder Clarity Call with Prerona Roy. This is an open, in-depth conversation where you can discuss the challenges, patterns, pressures, or bottlenecks you are currently experiencing. The purpose is to understand where you feel stuck, identify the deeper patterns at play, and explore whether this intensive is the right fit for your specific stage and needs.',
+        q: 'What is the Programme Understanding call and how does it differ from the pre-qualifying call?',
+        a: 'After the pre-qualifying call, the next step is a deeper Programme Understanding call with Prerona Roy. This is an open, in-depth conversation where you can discuss the challenges, patterns, pressures, or bottlenecks you are currently experiencing. The purpose is to understand where you feel stuck, identify the deeper patterns at play, and explore whether this intensive is the right fit for your specific stage and needs.',
       },
       {
         q: 'Am I guaranteed a spot after submitting my application?',
-        a: 'No. This is a highly selective, limited-capacity programme. Submitting an application begins the conversation, and both parties need to feel aligned after the clarity call before enrolment happens.\n\nTo maintain the depth and quality of the experience, we intentionally select only 5 founders each month. If you are not selected for the current intake, your application may be carried forward and reconsidered for the following month.',
+        a: 'No. This is a highly selective, limited-capacity programme. Submitting an application begins the conversation, and both parties need to feel aligned after the Programme Understanding call before enrolment happens.\n\nTo maintain the depth and quality of the experience, we intentionally select only 5 founders each month. If you are not selected for the current intake, your application may be carried forward and reconsidered for the following month.',
       },
       {
         q: 'How do I know if I am the right fit?',

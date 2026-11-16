@@ -10,7 +10,7 @@ export default function StickyCTA({ onApplyClick }) {
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-white w-full sm:w-auto text-center sm:text-left">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-500/20 border border-red-500/40 text-[10px] sm:text-xs font-bold text-red-300 uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-              Only 2 Slots Left (August)
+              Only 5 Slots Left (January)
             </div>
             <span className="font-serif font-semibold text-xs sm:text-base text-white/90 leading-snug">
               Ready To Break The Invisible Ceiling Holding Your Business Back?

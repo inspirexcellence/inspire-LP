@@ -110,13 +110,13 @@ export default function ApplyForm() {
                     <p className="text-xs text-[#6B6B6B]">Private 1:1 with Prerona Roy • Confidential Executive Assessment</p>
                   </div>
                   <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">
-                    2 Priority Slots Available
+                    5 Priority Slots Available
                   </span>
                 </div>
 
                 <div className="text-center py-8">
                   <p className="text-sm text-[#4A4E69] mb-6 font-medium">
-                    Click below to open Prerona's live executive booking calendar and secure your slot before the August intake closes:
+                    Click below to open Prerona's live executive booking calendar and secure your slot before the January intake closes:
                   </p>
                   <a
                     href="https://calendly.com" 
@@ -198,10 +198,10 @@ export default function ApplyForm() {
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-6 text-xs sm:text-sm font-medium">
           <span className="flex items-center gap-2 text-[#D4A017] font-bold">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            We work with only 5 founders per quarter.
+            We work with only 15 founders per quarter.
           </span>
           <span className="text-gray-300">
-            Next Available Slot: <strong className="text-white underline">August 2026</strong> (Only 2 slots remaining)
+            Next Available Slot: <strong className="text-white underline">January 2027</strong> (Only 5 slots remaining)
           </span>
           <span className="bg-[#B8860B]/20 text-[#D4A017] border border-[#B8860B]/40 px-3 py-0.5 rounded-full font-mono text-xs">
             Deadline: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m

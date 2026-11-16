@@ -15,7 +15,7 @@ function useVisible(threshold = 0.15) {
 }
 
 const outcomes = [
-  'Clarity on the patterns & beliefs affecting your growth',
+  'Understanding of the patterns & beliefs affecting your growth',
   'Better decision-making under uncertainty and pressure',
   'Stronger emotional control as a leader',
   'Reduced internal conflict and mental overload',

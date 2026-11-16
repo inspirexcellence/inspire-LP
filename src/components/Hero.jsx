@@ -140,7 +140,7 @@ export default function Hero({ onApplyClick }) {
                 </div>
                 
                 <div className="text-xs sm:text-[13px] font-bold uppercase tracking-wider leading-snug text-[#1A1F36]">
-                  <div>WE WORK WITH <span className="text-[#B8860B] font-extrabold text-sm sm:text-base ml-0.5">ONLY 5 FOUNDERS</span> PER</div>
+                  <div>WE WORK WITH <span className="text-[#B8860B] font-extrabold text-sm sm:text-base ml-0.5">ONLY 15 FOUNDERS</span> PER</div>
                   <div>QUARTER</div>
                 </div>
               </div>
