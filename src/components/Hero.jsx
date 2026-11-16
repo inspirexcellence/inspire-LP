@@ -67,9 +67,9 @@ export default function Hero({ onApplyClick }) {
           {/* ── LEFT: Text content ── */}
           <div className="lg:col-span-5 flex flex-col items-start">
             {/* Headline */}
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.3rem] font-extrabold text-[#1A1F36] leading-[1.2] tracking-tight mb-4 animate-fade-in-up">
-              <span className="text-[#D4A017] underline decoration-[#D4A017] decoration-[3px] sm:decoration-4 underline-offset-[6px] sm:underline-offset-8">One Decision</span>
-              <br />Can Change the <span className="text-[#D4A017] underline decoration-[#D4A017] decoration-[3px] sm:decoration-4 underline-offset-[6px] sm:underline-offset-8">Trajectory</span> of Your Business.
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.3rem] font-bold text-[#1A1F36] leading-[1.16] mb-4 animate-fade-in-up">
+              <span className="text-[#D4A017] underline decoration-[#D4A017] decoration-2 sm:decoration-[3px] underline-offset-[8px] sm:underline-offset-[10px]">One Decision</span>
+              <br />Can Change the <span className="text-[#D4A017] underline decoration-[#D4A017] decoration-2 sm:decoration-[3px] underline-offset-[8px] sm:underline-offset-[10px]">Trajectory</span> of Your Business.
             </h1>
 
             {/* Sub-headline in gold */}
