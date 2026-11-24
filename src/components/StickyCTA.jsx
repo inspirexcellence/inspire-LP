@@ -1,4 +1,5 @@
 import React from 'react'
+import { trackMetaContact } from '../utils/metaPixel'
 
 export default function StickyCTA({ onApplyClick }) {
   return (
@@ -24,6 +25,7 @@ export default function StickyCTA({ onApplyClick }) {
               href="https://wa.me/918100211066?text=Hi%20Prerona%2C%20I%20would%20like%20to%20learn%20more%20about%20the%20Founder%20Clarity%20Intensive%20and%20break%20through%20my%20invisible%20ceiling."
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackMetaContact({ method: 'whatsapp' })}
               title="Message on WhatsApp"
               className="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold px-4 sm:px-5 py-2.5 rounded-3xl text-xs transition-all shadow-[0_4px_15px_rgba(37,211,102,0.35)] hover:shadow-[0_4px_20px_rgba(37,211,102,0.5)]"
             >

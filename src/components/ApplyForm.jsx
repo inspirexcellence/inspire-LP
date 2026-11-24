@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { trackMetaLead } from '../utils/metaPixel'
 
 export default function ApplyForm() {
   const navigate = useNavigate()
@@ -53,6 +54,20 @@ export default function ApplyForm() {
       formData.InvestmentReadiness === 'Not ready right now'
     )
     setIsQualified(qualified)
+
+    // Trigger Meta Pixel (Browser) + Meta Conversions API (Server CAPI)
+    trackMetaLead(
+      {
+        name: formData.Name,
+        email: formData.Email,
+        phone: formData.Phone
+      },
+      {
+        annual_revenue: formData.AnnualRevenue,
+        business_role: formData.BusinessRole,
+        qualified: qualified
+      }
+    )
 
     const payload = new FormData()
     payload.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE')
