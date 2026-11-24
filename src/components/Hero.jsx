@@ -98,7 +98,7 @@ export default function Hero({ onApplyClick }) {
                 id="hero-cta-apply"
                 className="px-8 py-4 bg-[#B8860B] text-white font-semibold rounded-full text-sm hover:bg-[#9a7009] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 tracking-wide text-center"
               >
-                Submit Your Application
+                Apply For The Intensive
               </a>
               <a
                 href="#programme"

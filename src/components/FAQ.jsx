@@ -211,7 +211,7 @@ export default function FAQ({ onApplyClick }) {
             href="#apply" onClick={(e) => { e.preventDefault(); onApplyClick(); }}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#B8860B] text-white font-semibold rounded-full text-sm hover:bg-[#9a7009] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 tracking-wide"
           >
-            Submit Your Application
+            Apply For The Intensive
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
